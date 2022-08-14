@@ -13,12 +13,13 @@ then
 	printf 'No Music Archive to Download. Assuming you either have your music archive pre-uploaded, or your music folder pre-populated with songs? (No link specified in \$CFG_MUSIC_URL)\n'
 else
 	printf 'Downloading Music Archive... (Link specified in \$CFG_MUSIC_URL)\n'
-	curl -o music.7z -s -L $CFG_MUSIC_URL
+	curl -o music.zip -s -L $CFG_MUSIC_URL
 fi
 
-if test -f "music.7z"; then
+if [ -f "music.zip" ]
+then
     printf 'Extracting Music Archive to Music Folder...\n'
-	7z x music.7z -omusic/
+	unzip music.zip -d music/
 else
 	printf 'Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n'
 fi
