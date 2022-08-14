@@ -1,8 +1,4 @@
-printf 'Building Playlist File...\n\n'
-printf '%s\n' "$PWD"/music/*.ogg >> playlist.txt
-printf '%s\n' "$PWD"/music/*.mp3 >> playlist.txt
-
-printf 'Preparing Configuration Files...\n\n'
+printf 'Preparing Configuration...\n\n'
 export CFG_ADMIN_USER=${CFG_ADMIN_USER:-"admin"}
 export CFG_ADMIN_PASSWORD=${CFG_ADMIN_PASSWORD:-"hackme"}
 export CFG_ADMIN=${CFG_ADMIN:-"icemaster@localhost"}
@@ -10,6 +6,29 @@ export CFG_LOCATION=${CFG_LOCATION:-"Earth"}
 export CFG_RELAY_PASSWORD=${CFG_RELAY_PASSWORD:-"hackme"}
 export CFG_SOURCE_PASSWORD=${CFG_SOURCE_PASSWORD:-"hackme"}
 export CFG_STREAM_URL=${CFG_STREAM_URL:-"0.0.0.0"}
+export CFG_MUSIC_URL=${CFG_MUSIC_URL:-"none"}
+
+if [ "$CFG_MUSIC_URL" == "none" ]
+then
+	printf 'No Music Archive to Download. Assuming you either have your music archive pre-uploaded, or your music folder pre-populated with songs? (No link specified in \$CFG_MUSIC_URL)\n'
+else
+	printf 'Downloading Music Archive... (Link specified in \$CFG_MUSIC_URL)\n'
+	curl -o music.7z -s -L $CFG_MUSIC_URL
+fi
+
+if test -f "music.7z"; then
+    printf 'Extracting Music Archive to Music Folder...\n'
+	7z x music.7z -omusic/
+else
+	printf 'Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n'
+fi
+printf 'Music Prepared!\n\n'
+
+printf 'Building Playlist File...\n\n'
+printf '%s\n' "$PWD"/music/*.ogg >> playlist.txt
+printf '%s\n' "$PWD"/music/*.mp3 >> playlist.txt
+
+printf 'Building Configuration Files...\n\n'
 # ---
 sed -i -e "s/\$PORT/$PORT/g" icecast.xml
 sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" icecast.xml
