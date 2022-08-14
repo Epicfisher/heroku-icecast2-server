@@ -3,15 +3,15 @@
 	"description": "Runs a Free Icecast2 Server in Heroku.",
 	"repository": "https://github.com/Epicfisher/heroku-icecast2-server.git",
 	"buildpacks": [
-    	{
+    		{
   			"url": "https://github.com/heroku/heroku-buildpack-apt"
   		}
 	],
 	"env": {
-      	"CFG_STREAM_URL": {
-       		"description": "Your Radio's Website.",
-    		"value": "0.0.0.0"
-      	},
+      		"CFG_STREAM_URL": {
+       			"description": "Your Radio's Website.",
+    			"value": "0.0.0.0"
+      		},
   		"CFG_LOCATION": {
   			"description": "The server's location.",
   			"value": "Earth"
