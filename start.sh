@@ -38,7 +38,7 @@ sed -i -e "s/\$CFG_ADMIN/$CFG_ADMIN/g" icecast.xml
 sed -i -e "s/\$CFG_LOCATION/$CFG_LOCATION/g" icecast.xml
 sed -i -e "s/\$CFG_RELAY_PASSWORD/$CFG_RELAY_PASSWORD/g" icecast.xml
 sed -i -e "s/\$CFG_SOURCE_PASSWORD/$CFG_SOURCE_PASSWORD/g" icecast.xml
-sed -i -e "s/\$CFG_STREAM_URL/$CFG_STREAM_URL/g" icecast.xml
+sed -i -e "s/\$CFG_STREAM_URL/${CFG_STREAM_URL//\//\\/}/g" icecast.xml
 # ---
 sed -i -e "s/\$PORT/$PORT/g" ices.xml
 sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" ices.xml
@@ -47,7 +47,7 @@ sed -i -e "s/\$CFG_ADMIN/$CFG_ADMIN/g" ices.xml
 sed -i -e "s/\$CFG_LOCATION/$CFG_LOCATION/g" ices.xml
 sed -i -e "s/\$CFG_RELAY_PASSWORD/$CFG_RELAY_PASSWORD/g" ices.xml
 sed -i -e "s/\$CFG_SOURCE_PASSWORD/$CFG_SOURCE_PASSWORD/g" ices.xml
-sed -i -e "s/\$CFG_STREAM_URL/$CFG_STREAM_URL/g" ices.xml
+sed -i -e "s/\$CFG_STREAM_URL/${CFG_STREAM_URL//\//\\/}/g" ices.xml
 
 printf 'Starting Icecast2... (Radio Server)\n\n'
 icecast2 -c icecast.xml &
