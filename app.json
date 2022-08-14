@@ -1,13 +1,17 @@
 {
-	"name": "heroku-icecast2",
-	"description": "Run an icecast server on heroku",
-	"repository": "https://github.com/anakaiti/line-bot-python-heroku.git",
+	"name": "heroku-icecast2-server",
+	"description": "Runs a Free Icecast2 Server in Heroku.",
+	"repository": "https://github.com/Epicfisher/heroku-icecast2-server.git",
 	"buildpacks": [
-		{
-  		"url": "https://github.com/heroku/heroku-buildpack-apt"
-  		}
+    {
+  	"url": "https://github.com/heroku/heroku-buildpack-apt"
+  	}
 	],
 	"env": {
+      "CFG_STREAM_URL": {
+        "description": "Your Radio's Website.",
+        "value": "0.0.0.0"
+      },
   		"CFG_LOCATION": {
   			"description": "The server's location.",
   			"value": "Earth"
@@ -31,10 +35,7 @@
   		"CFG_ADMIN_PASSWORD": {
   			"description": "The admin password for the web UI.",
   			"value": "hackme"
-  		},
-  		"PORT": {
-  			"description": "The server's port.",
-  			"value": "8000"
   		}
   	}
 }
+
