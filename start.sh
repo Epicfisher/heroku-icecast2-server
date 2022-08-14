@@ -16,12 +16,12 @@ else
 	curl -o music.tar.gz -s -L $CFG_MUSIC_URL
 fi
 
-if [ -f "music.tar.gz" ]
+if [ -e music.tar.gz ]
 then
-    printf 'Extracting Music Archive to Music Folder...\n'
-	tar -xzvf music.tar.gz music/
+    printf "Extracting Music Archive to Music Folder...\n"
+	tar -xzvf music.tar.gz -C music/
 else
-	printf 'Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n'
+	printf "Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n"
 fi
 printf 'Music Prepared!\n\n'
 
