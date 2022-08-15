@@ -7,6 +7,9 @@ export CFG_RELAY_PASSWORD=${CFG_RELAY_PASSWORD:-"hackme"}
 export CFG_SOURCE_PASSWORD=${CFG_SOURCE_PASSWORD:-"hackme"}
 export CFG_STREAM_URL=${CFG_STREAM_URL:-"0.0.0.0"}
 export CFG_MUSIC_URL=${CFG_MUSIC_URL:-"none"}
+export CFG_GENRE=${CFG_GENRE:-"Unknown"}
+export CFG_STREAM_NAME=${CFG_STEAM_NAME:-"Heroku Icecast2 Live Radio"}
+export CFG_STREAM_DESCRIPTION=${CFG_STREAM_DESCRIPTION:-"A Heroku-powered Icecast2 Live Radio Server"}
 
 if [ "$CFG_MUSIC_URL" == "none" ]
 then
@@ -41,6 +44,9 @@ sed -i -e "s/\$CFG_LOCATION/$CFG_LOCATION/g" icecast.xml
 sed -i -e "s/\$CFG_RELAY_PASSWORD/$CFG_RELAY_PASSWORD/g" icecast.xml
 sed -i -e "s/\$CFG_SOURCE_PASSWORD/$CFG_SOURCE_PASSWORD/g" icecast.xml
 sed -i -e "s/\$CFG_STREAM_URL/${CFG_STREAM_URL//\//\\/}/g" icecast.xml
+sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" icecast.xml
+sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" icecast.xml
+sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" icecast.xml
 # ---
 sed -i -e "s/\$PORT/$PORT/g" ices.xml
 sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" ices.xml
@@ -50,6 +56,9 @@ sed -i -e "s/\$CFG_LOCATION/$CFG_LOCATION/g" ices.xml
 sed -i -e "s/\$CFG_RELAY_PASSWORD/$CFG_RELAY_PASSWORD/g" ices.xml
 sed -i -e "s/\$CFG_SOURCE_PASSWORD/$CFG_SOURCE_PASSWORD/g" ices.xml
 sed -i -e "s/\$CFG_STREAM_URL/${CFG_STREAM_URL//\//\\/}/g" ices.xml
+sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" ices.xml
+sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" ices.xml
+sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ices.xml
 
 printf 'Starting Icecast2... (Radio Server)\n\n'
 icecast2 -c icecast.xml &

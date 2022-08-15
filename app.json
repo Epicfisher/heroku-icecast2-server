@@ -12,6 +12,18 @@
        			"description": "Your Radio's Website.",
     			"value": "0.0.0.0"
       		},
+		"CFG_GENRE": {
+  			"description": "The radio's genre.",
+  			"value": "Unknown"
+  		},
+		"CFG_STREAM_NAME": {
+  			"description": "The name of your radio.",
+  			"value": "Heroku Icecast2 Live Radio"
+  		},
+		"CFG_STREAM_DESCRIPTION": {
+  			"description": "The description of your radio.",
+  			"value": "A Heroku-powered Icecast2 Live Radio Server"
+  		},
   		"CFG_LOCATION": {
   			"description": "The server's location.",
   			"value": "Earth"

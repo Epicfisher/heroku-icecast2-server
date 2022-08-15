@@ -134,10 +134,10 @@
 	<mount type="normal">
 	   <mount-name>/live.ogg</mount-name>
 	   <password>$CFG_SOURCE_PASSWORD</password>
-	   <stream-name>Heroku Icecast2 Live Radio</stream-name>
-	   <stream-description>A Heroku-powered Icecast2 Live Radio Server</stream-description>
+	   <stream-name>$CFG_STREAM_NAME</stream-name>
+	   <stream-description>$CFG_STREAM_DESCRIPTION</stream-description>
 	   <stream-url>$CFG_STREAM_URL</stream-url>
-	   <!--<genre>gnre</genre>-->
+	   <genre>$CFG_GENRE</genre>
 	   <type>application/ogg</type>
 	   <subtype>vorbis</subtype>
 	   <bitrate>128</bitrate>
