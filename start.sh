@@ -20,6 +20,8 @@ if [ -e music.tar.gz ]
 then
     printf "Extracting Music Archive to Music Folder...\n"
 	tar -xzvf music.tar.gz -C music/ --strip-components 1
+	printf "Cleanup: Deleting Now-Extracted Music Archive...\n"
+	rm music.tar.gz
 else
 	printf "Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n"
 fi
