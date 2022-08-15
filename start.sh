@@ -8,7 +8,7 @@ export CFG_SOURCE_PASSWORD=${CFG_SOURCE_PASSWORD:-"hackme"}
 export CFG_STREAM_URL=${CFG_STREAM_URL:-"0.0.0.0"}
 export CFG_MUSIC_URL=${CFG_MUSIC_URL:-"none"}
 export CFG_GENRE=${CFG_GENRE:-"Unknown"}
-export CFG_STREAM_NAME=${CFG_STEAM_NAME:-"Heroku Icecast2 Live Radio"}
+export CFG_STREAM_NAME=${CFG_STREAM_NAME:-"Heroku Icecast2 Live Radio"}
 export CFG_STREAM_DESCRIPTION=${CFG_STREAM_DESCRIPTION:-"A Heroku-powered Icecast2 Live Radio Server"}
 
 if [ "$CFG_MUSIC_URL" == "none" ]
