@@ -73,7 +73,7 @@ ices2 ices.xml
 printf 'Fixing Radio Stats JSON Page... (status-json.xsl)\n\n'
 rm ~/.apt/etc/icecast2/web/status-json.xsl
 sleep 2
-ln -s ~/.apt/etc/icecast2/web/status-json.xsl ~/.apt/usr/share/icecast2/web/status-json.xsl
+ln -s ~/.apt/usr/share/icecast2/web/status-json.xsl ~/.apt/etc/icecast2/web/status-json.xsl
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
