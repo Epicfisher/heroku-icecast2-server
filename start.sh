@@ -74,6 +74,9 @@ rm ~/.apt/etc/icecast2/web/status-json.xsl
 sleep 2
 ln -s ~/.apt/etc/icecast2/web/status-json.xsl ~/.apt/usr/share/icecast2/web/status-json.xsl
 
+printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')"
+cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
+
 printf "(Now Sleeping Forever!)\n\nYour Radio Server Webpage should now be Live!\n\nOn your App's Dashboard, Click 'Open app' in the top right to Open your Radio's Webpage!\n\n"
 while true
 do
