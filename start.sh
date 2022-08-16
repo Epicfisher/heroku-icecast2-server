@@ -1,4 +1,5 @@
 printf 'Preparing Configuration...\n\n'
+# ---
 export CFG_ADMIN_USER=${CFG_ADMIN_USER:-"admin"}
 export CFG_ADMIN_PASSWORD=${CFG_ADMIN_PASSWORD:-"hackme"}
 export CFG_ADMIN=${CFG_ADMIN:-"icemaster@localhost"}
@@ -10,29 +11,6 @@ export CFG_MUSIC_URL=${CFG_MUSIC_URL:-"none"}
 export CFG_GENRE=${CFG_GENRE:-"Unknown"}
 export CFG_STREAM_NAME=${CFG_STREAM_NAME:-"Heroku Icecast2 Live Radio"}
 export CFG_STREAM_DESCRIPTION=${CFG_STREAM_DESCRIPTION:-"A Heroku-powered Icecast2 Live Radio Server"}
-
-if [ "$CFG_MUSIC_URL" == "none" ]
-then
-	printf "No Music Archive to Download. Assuming you either have your music archive pre-uploaded, or your music folder pre-populated with songs? (No link specified in \$CFG_MUSIC_URL)\n"
-else
-	printf "Downloading Music Archive '$CFG_MUSIC_URL'... (Link specified in \$CFG_MUSIC_URL)\n"
-	curl -o music.tar.gz -s -L $CFG_MUSIC_URL
-fi
-
-if [ -e music.tar.gz ]
-then
-    printf "Extracting Music Archive to Music Folder...\n"
-	tar -xzvf music.tar.gz -C music/ --strip-components 1
-	printf "Cleanup: Deleting Now-Extracted Music Archive...\n"
-	rm music.tar.gz
-else
-	printf "Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n"
-fi
-printf 'Music Prepared!\n\n'
-
-printf 'Building Playlist File...\n\n'
-printf '%s\n' "$PWD"/music/*.ogg >> playlist.txt
-printf '%s\n' "$PWD"/music/*.mp3 >> playlist.txt
 
 printf 'Building Configuration Files...\n\n'
 # ---
@@ -65,6 +43,29 @@ icecast2 -c icecast.xml &
 
 printf 'Waiting for Icecast2 to Startup... (Sleeping for 10 Seconds)\n\n'
 sleep 10
+
+if [ "$CFG_MUSIC_URL" == "none" ]
+then
+	printf "No Music Archive to Download. Assuming you either have your music archive pre-uploaded, or your music folder pre-populated with songs? (No link specified in \$CFG_MUSIC_URL)\n"
+else
+	printf "Downloading Music Archive '$CFG_MUSIC_URL'... (Link specified in \$CFG_MUSIC_URL)\n"
+	curl -o music.tar.gz -s -L $CFG_MUSIC_URL
+fi
+
+if [ -e music.tar.gz ]
+then
+    printf "Extracting Music Archive to Music Folder...\n"
+	tar -xzvf music.tar.gz -C music/ --strip-components 1
+	printf "Cleanup: Deleting Now-Extracted Music Archive...\n"
+	rm music.tar.gz
+else
+	printf "Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n"
+fi
+printf 'Music Prepared!\n\n'
+
+printf 'Building Playlist File...\n\n'
+printf '%s\n' "$PWD"/music/*.ogg >> playlist.txt
+printf '%s\n' "$PWD"/music/*.mp3 >> playlist.txt
 
 printf '\nStarting Ices2... (Audio Streamer)\n\n'
 ices2 ices.xml
