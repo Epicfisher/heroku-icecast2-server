@@ -66,6 +66,10 @@ icecast2 -c icecast.xml &
 printf 'Waiting for Icecast2 to Startup... (Sleeping for 10 Seconds)\n\n'
 sleep 10
 
+printf 'Fixing Radio Stats JSON Page... (status-json.xsl)\n\n'
+rm ~/.apt/etc/icecast2/web/status-json.xsl
+ln -s ~/.apt/etc/icecast2/web/status-json.xsl ~/.apt/usr/share/icecast2/web/status-json.xsl
+
 printf '\nStarting Ices2... (Audio Streamer)\n\n'
 ices2 ices.xml
 
