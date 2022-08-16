@@ -38,6 +38,16 @@ sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" ices.xml
 sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" ices.xml
 sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ices.xml
 
+printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')"
+cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
+#printf '\n' "$PWD"/music/*.mp3 >> ~/.apt/etc/icecast2/web/status2.xsl
+
+printf 'Fixing Radio Stats JSON Page... (status-json.xsl)\n\n'
+sleep 2
+rm ~/.apt/etc/icecast2/web/status-json.xsl
+sleep 2
+ln -s ~/.apt/usr/share/icecast2/web/status-json.xsl ~/.apt/etc/icecast2/web/status-json.xsl
+
 printf 'Starting Icecast2... (Radio Server)\n\n'
 icecast2 -c icecast.xml &
 
@@ -69,14 +79,6 @@ printf '%s\n' "$PWD"/music/*.mp3 >> playlist.txt
 
 printf '\nStarting Ices2... (Audio Streamer)\n\n'
 ices2 ices.xml
-
-printf 'Fixing Radio Stats JSON Page... (status-json.xsl)\n\n'
-rm ~/.apt/etc/icecast2/web/status-json.xsl
-sleep 2
-ln -s ~/.apt/usr/share/icecast2/web/status-json.xsl ~/.apt/etc/icecast2/web/status-json.xsl
-
-printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')"
-cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
 
 printf "(Now Sleeping Forever!)\n\nYour Radio Server Webpage should now be Live!\n\nOn your App's Dashboard, Click 'Open app' in the top right to Open your Radio's Webpage!\n\n"
 while true
