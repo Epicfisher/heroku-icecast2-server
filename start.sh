@@ -40,7 +40,7 @@ sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ices.xml
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')\n\n"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
-printf '1' > ~/.apt/etc/icecast2/web/listeners.txt
+#printf '1' > ~/.apt/etc/icecast2/web/listeners.txt
 
 #printf 'Fixing Radio Stats JSON Page... (status-json.xsl)\n\n'
 #sleep 2
