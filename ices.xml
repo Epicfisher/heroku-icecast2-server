@@ -21,6 +21,7 @@
 			<port>$PORT</port>
 			<password>$CFG_SOURCE_PASSWORD</password>
 			<mount>/live.ogg</mount>
+			<yp>$CFG_ADVERTISE</yp>
 		</instance>
 	</stream>
 </ices>

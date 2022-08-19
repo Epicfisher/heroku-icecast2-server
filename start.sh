@@ -12,6 +12,7 @@ export CFG_GENRE=${CFG_GENRE:-"Unknown"}
 export CFG_STREAM_NAME=${CFG_STREAM_NAME:-"Heroku Icecast2 Live Radio"}
 export CFG_STREAM_DESCRIPTION=${CFG_STREAM_DESCRIPTION:-"A Heroku-powered Icecast2 Live Radio Server"}
 export CFG_HOSTNAME=${CFG_HOSTNAME:-"0.0.0.0"}
+export CFG_ADVERTISE=${CFG_ADVERTISE:-"0"}
 
 printf 'Building Configuration Files...\n\n'
 # ---
@@ -27,6 +28,7 @@ sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" icecast.xml
 sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" icecast.xml
 sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" icecast.xml
 sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" icecast.xml
+sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" icecast.xml
 # ---
 sed -i -e "s/\$PORT/$PORT/g" ices.xml
 sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" ices.xml
@@ -40,6 +42,7 @@ sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" ices.xml
 sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" ices.xml
 sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ices.xml
 sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" ices.xml
+sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" ices.xml
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')\n\n"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
