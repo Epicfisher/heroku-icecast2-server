@@ -63,6 +63,14 @@
     -->
     <hostname>$CFG_HOSTNAME</hostname>
 
+    <!--For YP 'listenurl' Compatibility!-->
+    <listen-socket>
+        <port>443</port>
+        <bind-address>0.0.0.0</bind-address>
+		<!-- <shoutcast-mount>/stream</shoutcast-mount> -->
+    </listen-socket>
+
+    <!--The real Listen Socket (Hosts the Web Server)-->
     <listen-socket>
         <port>$PORT</port>
         <bind-address>0.0.0.0</bind-address>
