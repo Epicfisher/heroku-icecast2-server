@@ -8,6 +8,10 @@
   		}
 	],
 	"env": {
+		"CFG_HOSTNAME": {
+			"description": "Your Radio's Icecast2 Hostname.",
+		 "value": "0.0.0.0"
+	   },
       		"CFG_STREAM_URL": {
        			"description": "Your Radio's Website.",
     			"value": "0.0.0.0"
