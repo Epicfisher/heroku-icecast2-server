@@ -5,7 +5,8 @@
 set("log.stdout", true)
 
 # Music
-myplaylist = playlist("/app/playlist.pls")
+#myplaylist = playlist("/app/playlist.pls")
+myplaylist = playlist("/app/music/")
 
 # Start building the feed with music
 radio = myplaylist
