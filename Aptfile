@@ -12,3 +12,4 @@ libtag1-dev
 libao4
 libswscale5
 libswresample3
+libavfilter7
