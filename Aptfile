@@ -1,5 +1,6 @@
 icecast2
 ices2
+
 libxml2
 liblo7
 libsrt1
@@ -14,3 +15,4 @@ libswscale5
 libswresample3
 libavfilter7
 libavdevice58
+libfdk-aac1
