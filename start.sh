@@ -1,6 +1,7 @@
 printf 'Fixing Libraries for Heroku...\n\n'
 cp /app/.apt/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so /app/.apt/usr/lib/x86_64-linux-gnu/libpulsecommon-13.99.so
-cp -a /app/.apt/lib/x86_64-linux-gnu/. /app/.dpkg/usr/bin/
+#cp -a /app/.apt/lib/x86_64-linux-gnu/. /app/.dpkg/usr/bin/
+cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/
 
 printf 'Preparing Configuration...\n\n'
 # ---
