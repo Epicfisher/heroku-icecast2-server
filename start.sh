@@ -55,7 +55,7 @@ cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
 #ln -s ~/.apt/usr/share/icecast2/web/status-json.xsl ~/.apt/etc/icecast2/web/status-json.xsl
 
 printf 'Starting Icecast2... (Radio Server)\n\n'
-icecast2 -c icecast.xml &
+~/.apt/usr/bin/icecast2 -c icecast.xml &
 
 printf 'Waiting for Icecast2 to Startup... (Sleeping for 10 Seconds)\n\n'
 sleep 10
