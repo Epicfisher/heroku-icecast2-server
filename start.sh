@@ -1,3 +1,6 @@
+printf 'Fixing libpulsecommon-13.99 library...\n\n'
+cp /app/.apt/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so /app/.apt/usr/lib/x86_64-linux-gnu/libpulsecommon-13.99.so
+
 printf 'Preparing Configuration...\n\n'
 # ---
 export CFG_ADMIN_USER=${CFG_ADMIN_USER:-"admin"}
