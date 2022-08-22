@@ -10,3 +10,4 @@ libsoundtouch1
 libfaad2
 libtag1-dev
 libao4
+libswscale5
