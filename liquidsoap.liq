@@ -5,10 +5,10 @@
 set("log.stdout", true)
 
 # Music
-musicplaylist = playlist("/app/playlist.txt")
+myplaylist = playlist("/app/playlist.pls")
 
 # Start building the feed with music
-radio = musicplaylist
+radio = myplaylist
 
 # Stream it out
 output.icecast(%vorbis, host = "0.0.0.0", port = $PORT, password = "$CFG_SOURCE_PASSWORD", mount = "/live.ogg", radio)
