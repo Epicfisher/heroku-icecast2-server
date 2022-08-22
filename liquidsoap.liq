@@ -2,7 +2,7 @@
 
 # Print log messages to the console,
 # can also be done by passing the -v option to liquidsoap.
-log.stdout.set(true)
+#log.stdout.set(true)
 
 # Music
 #myplaylist = playlist("/app/playlist.pls")
