@@ -11,4 +11,4 @@ musicplaylist = playlist("playlist.txt")
 radio = musicplaylist
 
 # Stream it out
-output.icecast(%vorbis, host = "0.0.0.0", port = $PORT, password = $CFG_SOURCE_PASSWORD, mount = "/live.ogg", radio)
+output.icecast(%vorbis, host = "0.0.0.0", port = $PORT, password = "$CFG_SOURCE_PASSWORD", mount = "/live.ogg", radio)
