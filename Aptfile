@@ -13,3 +13,4 @@ libao4
 libswscale5
 libswresample3
 libavfilter7
+libavdevice58
