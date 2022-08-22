@@ -1,7 +1,7 @@
 printf 'Fixing Libraries for Heroku...\n\n'
 cp /app/.apt/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so /app/.apt/usr/lib/x86_64-linux-gnu/libpulsecommon-13.99.so
-#cp -a /app/.apt/lib/x86_64-linux-gnu/. /app/.dpkg/usr/bin/
-cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/
+cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/.dpkg/usr/bin/
+#cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/
 
 printf 'Preparing Configuration...\n\n'
 # ---
@@ -105,7 +105,9 @@ printf '%s\n' "$PWD"/music/*.mp3 >> playlist.txt
 #printf '\nStarting Ices2... (Audio Streamer)\n\n'
 #~/.apt/usr/bin/ices2 ices.xml
 printf '\nStarting Liquidsoap... (Audio Streamer)\n\n'
-~/.dpkg/usr/bin/liquidsoap liquidsoap.liq
+#~/.dpkg/usr/bin/liquidsoap liquidsoap.liq
+cd ~/.dpkg/usr/bin/
+liquidsoap ~/liquidsoap.liq
 
 printf "(Now Sleeping Forever!)\n\nYour Radio Server Webpage should now be Live!\n\nOn your App's Dashboard, Click 'Open app' in the top right to Open your Radio's Webpage!\n\n"
 while true
