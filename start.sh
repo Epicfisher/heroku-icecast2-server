@@ -47,6 +47,20 @@ sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" ices.xml
 sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ices.xml
 sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" ices.xml
 sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" ices.xml
+# ---
+sed -i -e "s/\$PORT/$PORT/g" liquidsoap.liq
+sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" liquidsoap.liq
+sed -i -e "s/\$CFG_ADMIN_PASSWORD/$CFG_ADMIN_PASSWORD/g" liquidsoap.liq
+sed -i -e "s/\$CFG_ADMIN/$CFG_ADMIN/g" liquidsoap.liq
+sed -i -e "s/\$CFG_LOCATION/$CFG_LOCATION/g" liquidsoap.liq
+sed -i -e "s/\$CFG_RELAY_PASSWORD/$CFG_RELAY_PASSWORD/g" liquidsoap.liq
+sed -i -e "s/\$CFG_SOURCE_PASSWORD/$CFG_SOURCE_PASSWORD/g" liquidsoap.liq
+sed -i -e "s/\$CFG_STREAM_URL/${CFG_STREAM_URL//\//\\/}/g" liquidsoap.liq
+sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" liquidsoap.liq
+sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" liquidsoap.liq
+sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" liquidsoap.liq
+sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" liquidsoap.liq
+sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" liquidsoap.liq
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')\n\n"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
@@ -66,20 +80,20 @@ sleep 10
 
 if [ "$CFG_MUSIC_URL" == "none" ]
 then
-	printf "No Music Archive to Download. Assuming you either have your Music Archive pre-uploaded, or your music folder pre-populated with songs? (No link specified in \$CFG_MUSIC_URL)\n"
+	printf "\nNo Music Archive to Download. Assuming you either have your Music Archive pre-uploaded, or your music folder pre-populated with songs? (No link specified in \$CFG_MUSIC_URL)\n"
 else
-	printf "Downloading Music Archive '$CFG_MUSIC_URL'... (Link specified in \$CFG_MUSIC_URL)\n"
+	printf "\nDownloading Music Archive '$CFG_MUSIC_URL'... (Link specified in \$CFG_MUSIC_URL)\n"
 	curl -o music.tar.gz -s -L $CFG_MUSIC_URL
 fi
 
 if [ -e music.tar.gz ]
 then
-    printf "Extracting Music Archive to Music Folder...\n"
+    printf "\nExtracting Music Archive to Music Folder...\n"
 	tar -xzvf music.tar.gz -C music/ --strip-components 1
-	printf "Cleanup: Deleting Now-Extracted Music Archive...\n"
+	printf "\nCleanup: Deleting Now-Extracted Music Archive...\n"
 	rm music.tar.gz
 else
-	printf "Music Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n"
+	printf "\nMusic Archive Doesn't Exist! Assuming you have your music folder pre-populated with songs?\n"
 fi
 printf 'Music Prepared!\n\n'
 
