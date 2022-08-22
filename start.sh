@@ -90,7 +90,7 @@ printf '%s\n' "$PWD"/music/*.mp3 >> playlist.txt
 #printf '\nStarting Ices2... (Audio Streamer)\n\n'
 #~/.apt/usr/bin/ices2 ices.xml
 printf '\nStarting Liquidsoap... (Audio Streamer)\n\n'
-~/.dpkg/usr/bin/liquidsoap
+~/.dpkg/usr/bin/liquidsoap liquidsoap.liq
 
 printf "(Now Sleeping Forever!)\n\nYour Radio Server Webpage should now be Live!\n\nOn your App's Dashboard, Click 'Open app' in the top right to Open your Radio's Webpage!\n\n"
 while true
