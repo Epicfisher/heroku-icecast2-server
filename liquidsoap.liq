@@ -5,7 +5,7 @@
 set("configure.libdir", "/app/.dpkg/usr/share")
 
 # Include Pervasives Library File
-%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/pervasives.liq"
+#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/pervasives.liq"
 
 # Log dir
 set("log.file.path","/dev/null")
