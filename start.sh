@@ -1,8 +1,6 @@
 printf 'Fixing Libraries for Heroku...\n\n'
 cp /app/.apt/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so /app/.apt/usr/lib/x86_64-linux-gnu/libpulsecommon-13.99.so
 cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/.dpkg/usr/bin/
-#cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/
-#cp -a /app/.dpkg/usr/share/liquidsoap/2.1.0/libs/. ~/.dpkg/usr/bin/libs/
 
 printf 'Preparing Configuration...\n\n'
 # ---
@@ -71,13 +69,7 @@ fi
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')\n\n"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
-#printf '1' > ~/.apt/etc/icecast2/web/listeners.txt
-
-#printf 'Fixing Radio Stats JSON Page... (status-json.xsl)\n\n'
-#sleep 2
-#rm ~/.apt/etc/icecast2/web/status-json.xsl
-#sleep 2
-#ln -s ~/.apt/usr/share/icecast2/web/status-json.xsl ~/.apt/etc/icecast2/web/status-json.xsl
+printf 'Testing!\nThis should be readable from your radio''s website.' > ~/.apt/etc/icecast2/web/test.txt
 
 printf 'Starting Icecast2... (Radio Server)\n\n'
 ~/.apt/usr/bin/icecast2 -c icecast.xml &
@@ -105,16 +97,12 @@ fi
 printf 'Music Prepared!\n\n'
 
 printf 'Building Playlist File...\n\n'
-printf '%s\n' "$PWD"/music/*.ogg >> ~/playlist.pls
-printf '%s\n' "$PWD"/music/*.mp3 >> ~/playlist.pls
-
-printf 'Building Liquidsoap Libraries...\n\n'
-printf '%%include "%s"\n' /app/.dpkg/usr/share/liquidsoap/2.1.0/libs/*.liq >> ~/includeallforheroku.liq
+printf '%s\n' ~/music/*.ogg >> ~/playlist.pls
+printf '%s\n' ~/music/*.mp3 >> ~/playlist.pls
 
 #printf '\nStarting Ices2... (Audio Streamer)\n\n'
 #~/.apt/usr/bin/ices2 ices.xml
 printf '\nStarting Liquidsoap... (Audio Streamer)\n\n'
-#~/.dpkg/usr/bin/liquidsoap liquidsoap.liq
 cd ~/.dpkg/usr/bin/
 liquidsoap --version
 liquidsoap -v ~/liquidsoap.liq
