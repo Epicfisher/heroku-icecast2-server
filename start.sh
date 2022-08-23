@@ -84,13 +84,13 @@ then
 	printf "\nNo Music Archive to Download. Assuming you either have your Music Archive pre-uploaded, or your music folder pre-populated with songs? (No link specified in \$CFG_MUSIC_URL)\n"
 else
 	printf "\nDownloading Music Archive '$CFG_MUSIC_URL'... (Link specified in \$CFG_MUSIC_URL)\n"
-	curl -o music.tar.gz -s -L $CFG_MUSIC_URL
+	curl -o music.tar.gz -L $CFG_MUSIC_URL
 fi
 
 if [ -e music.tar.gz ]
 then
     printf "\nExtracting Music Archive to Music Folder...\n"
-	tar -xzvf music.tar.gz -C music/ --strip-components 1
+	tar -xzvf music.tar.gz -C ~/music/ --strip-components 1
 	printf "\nCleanup: Deleting Now-Extracted Music Archive...\n"
 	rm music.tar.gz
 else
@@ -99,8 +99,8 @@ fi
 printf 'Music Prepared!\n\n'
 
 printf 'Building Playlist File...\n\n'
-printf '%s\n' "$PWD"/music/*.ogg >> playlist.pls
-printf '%s\n' "$PWD"/music/*.mp3 >> playlist.pls
+printf '%s\n' "$PWD"/music/*.ogg >> ~/playlist.pls
+printf '%s\n' "$PWD"/music/*.mp3 >> ~/playlist.pls
 
 #printf '\nStarting Ices2... (Audio Streamer)\n\n'
 #~/.apt/usr/bin/ices2 ices.xml
