@@ -62,7 +62,12 @@ sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" ~/liquidsoap.liq
 sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" ~/liquidsoap.liq
 sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ~/liquidsoap.liq
 sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" ~/liquidsoap.liq
-sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" ~/liquidsoap.liq
+if [ "$CFG_ADVERTISE" == 1 ]
+then
+	sed -i -e "s/\$CFG_ADVERTISE/true/g" ~/liquidsoap.liq
+else
+	sed -i -e "s/\$CFG_ADVERTISE/false/g" ~/liquidsoap.liq
+fi
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')\n\n"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
