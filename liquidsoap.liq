@@ -7,6 +7,9 @@ set("log.file.path","/dev/null")
 # can also be done by passing the -v option to liquidsoap.
 set("log.stdout", true)
 
+# Configure Library Directory
+set("configure.libdir", "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs")
+
 # Music
 mymusic = playlist(mksafe("/app/playlist.pls"))
 
