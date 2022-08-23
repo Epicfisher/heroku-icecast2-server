@@ -104,7 +104,7 @@ printf '%s\n' "$PWD"/music/*.ogg >> ~/playlist.pls
 printf '%s\n' "$PWD"/music/*.mp3 >> ~/playlist.pls
 
 printf 'Building Liquidsoap Libraries...\n\n'
-printf '%%include "%s"\n' /app/.dpkg/usr/bin/libs/*.liq >> ~/includeallforheroku.liq
+printf '%%include "%s"\n' /app/.dpkg/usr/share/liquidsoap/2.1.0/libs/*.liq >> ~/includeallforheroku.liq
 
 #printf '\nStarting Ices2... (Audio Streamer)\n\n'
 #~/.apt/usr/bin/ices2 ices.xml
