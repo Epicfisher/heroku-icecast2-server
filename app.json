@@ -3,9 +3,12 @@
 	"description": "Runs a Free Icecast2 Server in Heroku.",
 	"repository": "https://github.com/Epicfisher/heroku-icecast2-server.git",
 	"buildpacks": [
-    		{
-  			"url": "https://github.com/heroku/heroku-buildpack-apt"
-  		}
+		{
+			"url": "https://github.com/heroku/heroku-buildpack-apt"
+		},
+		{
+			"url": "https://github.com/rricard/heroku-buildpack-dpkg"
+		}
 	],
 	"env": {
 		"CFG_ADVERTISE": {
