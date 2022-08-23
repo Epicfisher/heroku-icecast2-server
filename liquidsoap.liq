@@ -31,7 +31,7 @@ def transition(a, b)
 end
 
 # Apply it!
-radio = cross(transition, radio)
+radio = cross(duration = 5., transition, radio)
 
 # Stream it out
 output.icecast(%vorbis, host = "0.0.0.0", port = $PORT, password = "$CFG_SOURCE_PASSWORD", mount = "/live.ogg", public = $CFG_ADVERTISE, fallible = true, radio)
