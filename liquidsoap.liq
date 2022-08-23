@@ -23,7 +23,12 @@ mymusic = playlist("/app/music")
 radio = mymusic
 
 # Smart Crossfade the radio
-radio = cross.smart(radio)
+def transition(a, b)
+    cross.smart(a, b)
+end
+
+# Apply it!
+radio = cross(duration=5., transition, radio)
 
 # Stream it out
 output.icecast(%vorbis, host = "0.0.0.0", port = $PORT, password = "$CFG_SOURCE_PASSWORD", mount = "/live.ogg", public = $CFG_ADVERTISE, fallible = true, radio)
