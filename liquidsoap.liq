@@ -14,10 +14,13 @@
 # can also be done by passing the -v option to liquidsoap.
 #set("log.stdout", true)
 
+# Enable Replaygain Calculation/Retrieval
+enable_replaygain_metadata()
+
 # Music
 #mymusic = playlist(mksafe("/app/playlist.pls"))
 #mymusic = playlist("/app/playlist.pls")
-mymusic = playlist("/app/music")
+mymusic = replaygain(playlist("/app/music"))
 
 # Start building the feed with music
 radio = mymusic
