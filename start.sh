@@ -2,6 +2,7 @@ printf 'Fixing Libraries for Heroku...\n\n'
 cp /app/.apt/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so /app/.apt/usr/lib/x86_64-linux-gnu/libpulsecommon-13.99.so
 cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/.dpkg/usr/bin/
 #cp -a ~/.apt/lib/x86_64-linux-gnu/. ~/
+#cp -a /app/.dpkg/usr/share/liquidsoap/2.1.0/libs/. ~/.dpkg/usr/bin/libs/
 
 printf 'Preparing Configuration...\n\n'
 # ---
@@ -49,19 +50,19 @@ sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ices.xml
 sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" ices.xml
 sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" ices.xml
 # ---
-sed -i -e "s/\$PORT/$PORT/g" liquidsoap.liq
-sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" liquidsoap.liq
-sed -i -e "s/\$CFG_ADMIN_PASSWORD/$CFG_ADMIN_PASSWORD/g" liquidsoap.liq
-sed -i -e "s/\$CFG_ADMIN/$CFG_ADMIN/g" liquidsoap.liq
-sed -i -e "s/\$CFG_LOCATION/$CFG_LOCATION/g" liquidsoap.liq
-sed -i -e "s/\$CFG_RELAY_PASSWORD/$CFG_RELAY_PASSWORD/g" liquidsoap.liq
-sed -i -e "s/\$CFG_SOURCE_PASSWORD/$CFG_SOURCE_PASSWORD/g" liquidsoap.liq
-sed -i -e "s/\$CFG_STREAM_URL/${CFG_STREAM_URL//\//\\/}/g" liquidsoap.liq
-sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" liquidsoap.liq
-sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" liquidsoap.liq
-sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" liquidsoap.liq
-sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" liquidsoap.liq
-sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" liquidsoap.liq
+sed -i -e "s/\$PORT/$PORT/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_ADMIN_PASSWORD/$CFG_ADMIN_PASSWORD/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_ADMIN/$CFG_ADMIN/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_LOCATION/$CFG_LOCATION/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_RELAY_PASSWORD/$CFG_RELAY_PASSWORD/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_SOURCE_PASSWORD/$CFG_SOURCE_PASSWORD/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_STREAM_URL/${CFG_STREAM_URL//\//\\/}/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_GENRE/$CFG_GENRE/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" ~/liquidsoap.liq
+sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" ~/liquidsoap.liq
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')\n\n"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
@@ -102,13 +103,16 @@ printf 'Building Playlist File...\n\n'
 printf '%s\n' "$PWD"/music/*.ogg >> ~/playlist.pls
 printf '%s\n' "$PWD"/music/*.mp3 >> ~/playlist.pls
 
+printf 'Building Liquidsoap Libraries...\n\n'
+printf '%%include "%s"\n' /app/.dpkg/usr/bin/libs/*.liq >> ~/.dpkg/usr/bin/includeallforheroku.liq
+
 #printf '\nStarting Ices2... (Audio Streamer)\n\n'
 #~/.apt/usr/bin/ices2 ices.xml
 printf '\nStarting Liquidsoap... (Audio Streamer)\n\n'
 #~/.dpkg/usr/bin/liquidsoap liquidsoap.liq
 cd ~/.dpkg/usr/bin/
 liquidsoap --version
-liquidsoap ~/liquidsoap.liq --verbose
+liquidsoap -v ~/liquidsoap.liq
 
 printf "(Now Sleeping Forever!)\n\nYour Radio Server Webpage should now be Live!\n\nOn your App's Dashboard, Click 'Open app' in the top right to Open your Radio's Webpage!\n\n"
 while true
