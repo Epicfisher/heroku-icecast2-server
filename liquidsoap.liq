@@ -8,7 +8,7 @@ set("log.file.path","/dev/null")
 set("log.stdout", true)
 
 # Music
-mymusic = playlist.safe("/app/playlist.pls")
+mymusic = playlist(mksafe("/app/playlist.pls"))
 
 # Start building the feed with music
 radio = mymusic
