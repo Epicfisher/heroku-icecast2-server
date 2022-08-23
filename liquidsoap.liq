@@ -1,17 +1,7 @@
 #!/usr/bin/liquidsoap
 
-# Hardcoded Library File Loading (Messy and Imperfect but it works for now)
-#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/error.liq"
-#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/list.liq"
-#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/string.liq"
-#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/log.liq"
-%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/stdlib.liq"
-#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/playlist.liq"
-
-# Include Pervasives Library File
-#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/pervasives.liq"
-#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/playlist.liq"
-#%include "includeallforheroku.liq"
+# Load All Standard Liquidsoap Library Files
+%include "~/.dpkg/usr/share/liquidsoap/2.1.0/libs/stdlib.liq"
 
 # Configure Library Directory
 #set("configure.libdir", "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs")
