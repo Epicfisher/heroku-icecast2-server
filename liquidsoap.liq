@@ -12,7 +12,7 @@ set("log.file.path","/dev/null")
 
 # Print log messages to the console,
 # can also be done by passing the -v option to liquidsoap.
-set("log.stdout", true)
+#set("log.stdout", true)
 
 # Music
 #mymusic = playlist(mksafe("/app/playlist.pls"))

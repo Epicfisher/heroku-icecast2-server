@@ -108,7 +108,7 @@ printf '\nStarting Liquidsoap... (Audio Streamer)\n\n'
 #~/.dpkg/usr/bin/liquidsoap liquidsoap.liq
 cd ~/.dpkg/usr/bin/
 liquidsoap --version
-liquidsoap ~/liquidsoap.liq
+liquidsoap ~/liquidsoap.liq --verbose
 
 printf "(Now Sleeping Forever!)\n\nYour Radio Server Webpage should now be Live!\n\nOn your App's Dashboard, Click 'Open app' in the top right to Open your Radio's Webpage!\n\n"
 while true
