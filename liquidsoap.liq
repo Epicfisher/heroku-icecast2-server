@@ -2,7 +2,7 @@
 
 # Include Pervasives Library File
 #%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/pervasives.liq"
-%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/playlist.liq"
+#%include "/app/.dpkg/usr/share/liquidsoap/2.1.0/libs/playlist.liq"
 #%include "includeallforheroku.liq"
 
 # Configure Library Directory
@@ -19,10 +19,10 @@
 # Music
 #mymusic = playlist(mksafe("/app/playlist.pls"))
 #mymusic = playlist("/app/playlist.pls")
-mymusic = playlist("/app/music")
+#mymusic = playlist("/app/music")
 
 # Start building the feed with music
-radio = mymusic
+#radio = mymusic
 
 # Stream it out
 output.icecast(%vorbis, host = "0.0.0.0", port = $PORT, password = "$CFG_SOURCE_PASSWORD", mount = "/live.ogg", public = $CFG_ADVERTISE, fallible = true, radio)
