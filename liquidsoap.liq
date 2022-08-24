@@ -20,7 +20,8 @@ enable_replaygain_metadata()
 # Music
 #mymusic = playlist(mksafe("/app/playlist.pls"))
 #mymusic = playlist("/app/playlist.pls")
-mymusic = replaygain(playlist("/app/music"))
+mymusic = playlist("~/playlist.txt")
+#mymusic = replaygain(playlist("/app/music"))
 
 # Start building the feed with music
 radio = mymusic

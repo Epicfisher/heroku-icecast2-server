@@ -97,8 +97,8 @@ fi
 printf 'Music Prepared!\n\n'
 
 printf 'Building Playlist File...\n\n'
-printf '%s\n' ~/music/*.ogg >> ~/playlist.pls
-printf '%s\n' ~/music/*.mp3 >> ~/playlist.pls
+printf '%s\n' ~/music/*.ogg >> ~/playlist.txt
+printf '%s\n' ~/music/*.mp3 >> ~/playlist.txt
 
 #printf '\nStarting Ices2... (Audio Streamer)\n\n'
 #~/.apt/usr/bin/ices2 ices.xml
