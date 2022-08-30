@@ -1,5 +1,5 @@
 # Heroku Icecast2 Server
-Runs a Free Icecast2 Live Radio Server within Heroku, using Ices2 as the Source/Streaming Client.
+Runs a Free Icecast2 Live Radio Server within Heroku, using Liquidsoap or Ices2 as the Source/Streaming Client.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Epicfisher/heroku-icecast2-server)
 
