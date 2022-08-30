@@ -17,6 +17,7 @@ export CFG_STREAM_NAME=${CFG_STREAM_NAME:-"Heroku Icecast2 Live Radio"}
 export CFG_STREAM_DESCRIPTION=${CFG_STREAM_DESCRIPTION:-"A Heroku-powered Icecast2 Live Radio Server"}
 export CFG_HOSTNAME=${CFG_HOSTNAME:-"0.0.0.0"}
 export CFG_ADVERTISE=${CFG_ADVERTISE:-"0"}
+export CFG_CLIENT=${CFG_CLIENT:-"liquidsoap"}
 
 printf 'Building Configuration Files...\n\n'
 # ---
@@ -33,6 +34,7 @@ sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" icecast.xml
 sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" icecast.xml
 sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" icecast.xml
 sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" icecast.xml
+sed -i -e "s/\$CFG_CLIENT/$CFG_CLIENT/g" icecast.xml
 # ---
 sed -i -e "s/\$PORT/$PORT/g" ices.xml
 sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" ices.xml
@@ -47,6 +49,7 @@ sed -i -e "s/\$CFG_STREAM_NAME/$CFG_STREAM_NAME/g" ices.xml
 sed -i -e "s/\$CFG_STREAM_DESCRIPTION/$CFG_STREAM_DESCRIPTION/g" ices.xml
 sed -i -e "s/\$CFG_HOSTNAME/${CFG_HOSTNAME//\//\\/}/g" ices.xml
 sed -i -e "s/\$CFG_ADVERTISE/$CFG_ADVERTISE/g" ices.xml
+sed -i -e "s/\$CFG_CLIENT/$CFG_CLIENT/g" ices.xml
 # ---
 sed -i -e "s/\$PORT/$PORT/g" ~/liquidsoap.liq
 sed -i -e "s/\$CFG_ADMIN_USER/$CFG_ADMIN_USER/g" ~/liquidsoap.liq
@@ -66,6 +69,8 @@ then
 else
 	sed -i -e "s/\$CFG_ADVERTISE/false/g" ~/liquidsoap.liq
 fi
+sed -i -e "s/\$CFG_CLIENT/$CFG_CLIENT/g" ~/liquidsoap.liq
+# ---
 
 printf "Fixing Radio Files... (Copying '~/.apt/usr/share/icecast2/web/.' to '~/.apt/etc/icecast2/web/.')\n\n"
 cp -na ~/.apt/usr/share/icecast2/web/. ~/.apt/etc/icecast2/web/.
@@ -100,12 +105,19 @@ printf 'Building Playlist File...\n\n'
 printf '%s\n' ~/music/*.ogg >> ~/playlist.txt
 printf '%s\n' ~/music/*.mp3 >> ~/playlist.txt
 
-#printf '\nStarting Ices2... (Audio Streamer)\n\n'
-#~/.apt/usr/bin/ices2 ices.xml
-printf '\nStarting Liquidsoap... (Audio Streamer)\n\n'
-cd ~/.dpkg/usr/bin/
-liquidsoap --version
-liquidsoap -v ~/liquidsoap.liq
+if [ "$CFG_CLIENT" == "liquidsoap" ]
+then
+	printf '\nStarting Liquidsoap... (Audio Streamer)\n\n'
+	cd ~/.dpkg/usr/bin/
+	liquidsoap --version
+	liquidsoap -v ~/liquidsoap.liq
+fi
+
+if [ "$CFG_CLIENT" == "ices2" ]
+then
+	printf '\nStarting Ices2... (Audio Streamer)\n\n'
+	~/.apt/usr/bin/ices2 ices.xml
+fi
 
 printf "(Now Sleeping Forever!)\n\nYour Radio Server Webpage should now be Live!\n\nOn your App's Dashboard, Click 'Open app' in the top right to Open your Radio's Webpage!\n\n"
 while true

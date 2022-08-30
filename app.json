@@ -11,10 +11,14 @@
 		}
 	],
 	"env": {
+		"CFG_CLIENT": {
+			"description": "The Source Streaming Client to Use.",
+			"value": "liquidsoap"
+		},
 		"CFG_ADVERTISE": {
 			"description": "Whether or not to Publicly Advertise your Radio on Icecast2's Yellow Pages (YP) Listings.",
-		 "value": "0"
-	   },
+			"value": "0"
+		},
 		"CFG_HOSTNAME": {
 			"description": "Your Radio's Icecast2 Hostname.",
 		 "value": "0.0.0.0"
