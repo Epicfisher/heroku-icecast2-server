@@ -3,58 +3,65 @@
 	"description": "Runs a Free Icecast2 Server in Heroku.",
 	"repository": "https://github.com/Epicfisher/heroku-icecast2-server.git",
 	"buildpacks": [
-    		{
-  			"url": "https://github.com/heroku/heroku-buildpack-apt"
-  		}
+		{
+			"url": "https://github.com/heroku/heroku-buildpack-apt"
+		},
+		{
+			"url": "https://github.com/rricard/heroku-buildpack-dpkg"
+		}
 	],
 	"env": {
+		"CFG_CLIENT": {
+			"description": "The Source Streaming Client to Use.",
+			"value": "liquidsoap"
+		},
 		"CFG_ADVERTISE": {
 			"description": "Whether or not to Publicly Advertise your Radio on Icecast2's Yellow Pages (YP) Listings.",
-		 "value": "0"
-	   },
+			"value": "0"
+		},
 		"CFG_HOSTNAME": {
 			"description": "Your Radio's Icecast2 Hostname.",
-		 "value": "0.0.0.0"
-	   },
-      		"CFG_STREAM_URL": {
-       			"description": "Your Radio's Website.",
-    			"value": "0.0.0.0"
-      		},
+			"value": "0.0.0.0"
+		},
+		"CFG_STREAM_URL": {
+			"description": "Your Radio's Website.",
+			"value": "0.0.0.0"
+		},
 		"CFG_GENRE": {
-  			"description": "The radio's genre.",
-  			"value": "Unknown"
-  		},
+			"description": "The radio's genre.",
+			"value": "Unknown"
+		},
 		"CFG_STREAM_NAME": {
-  			"description": "The name of your radio.",
-  			"value": "Heroku Icecast2 Live Radio"
-  		},
+			"description": "The name of your radio.",
+			"value": "Heroku Icecast2 Live Radio"
+		},
 		"CFG_STREAM_DESCRIPTION": {
-  			"description": "The description of your radio.",
-  			"value": "A Heroku-powered Icecast2 Live Radio Server"
-  		},
-  		"CFG_LOCATION": {
-  			"description": "The server's location.",
-  			"value": "Earth"
-  		},
-  		"CFG_ADMIN": {
-  			"description": "The server admin's email.",
-  			"value": "icemaster@localhost"
-  		},
-  		"CFG_SOURCE_PASSWORD": {
-  			"description": "The password used for broadcasting to the server.",
-  			"value": "hackme"
-  		},
-  		"CFG_RELAY_PASSWORD": {
-  			"description": "The password used for relaying.",
-  			"value": "hackme"
-  		},
-  		"CFG_ADMIN_USER": {
-  			"description": "The admin username for the web UI.",
-  			"value": "admin"
-  		},
-  		"CFG_ADMIN_PASSWORD": {
-  			"description": "The admin password for the web UI.",
-  			"value": "hackme"
-  		}
-  	}
+			"description": "The description of your radio.",
+			"value": "A Heroku-powered Icecast2 Live Radio Server"
+		},
+		"CFG_LOCATION": {
+			"description": "The server's location.",
+			"value": "Earth"
+		},
+		"CFG_ADMIN": {
+			"description": "The server admin's email.",
+			"value": "icemaster@localhost"
+		},
+		"CFG_SOURCE_PASSWORD": {
+			"description": "The password used for broadcasting to the server.",
+			"value": "hackme"
+		},
+		"CFG_RELAY_PASSWORD": {
+			"description": "The password used for relaying.",
+			"value": "hackme"
+		},
+		"CFG_ADMIN_USER": {
+			"description": "The admin username for the web UI.",
+			"value": "admin"
+		},
+		"CFG_ADMIN_PASSWORD": {
+			"description": "The admin password for the web UI.",
+			"value": "hackme"
+		}
+	}
 }
